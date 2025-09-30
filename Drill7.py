@@ -50,7 +50,7 @@ class Ball:
         self.x, self.y = randint(0,800), 599
         self.drop = True
         self.type = randint(0,1)
-        self.speed = randint(5,20)
+        self.speed = randint(10,20)
 
     def draw(self):
         if self.type == 0:
@@ -61,6 +61,11 @@ class Ball:
     def update(self):
         if self.drop == True:
             self.y -= self.speed
+
+        if self.y <= 70:
+            if self.type == 0: self.y = 60
+            else: self.y = 70
+            self.drop = False
 
 
 
