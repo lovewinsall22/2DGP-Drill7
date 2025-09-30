@@ -1,6 +1,5 @@
 from pico2d import *
-import random
-
+from random import randint
 
 # Game object class here
 class Grass: # 클래스의 이름은 대문자로
@@ -17,8 +16,8 @@ class Grass: # 클래스의 이름은 대문자로
 class Boy:
     def __init__(self):
         self.image = load_image('run_animation.png')
-        self.x = random.randint(0,800)
-        self.frame = 0
+        self.x = randint(0,800)
+        self.frame = randint(0,7)
 
     def draw(self):
         self.image.clip_draw(self.frame * 100,0,100,100,self.x, 90)
