@@ -1,5 +1,5 @@
 from pico2d import *
-from random import randint
+from random import randint, shuffle
 
 # Game object class here
 class Grass: # 클래스의 이름은 대문자로
@@ -50,7 +50,7 @@ class Ball:
         self.x, self.y = randint(0,800), 599
         self.drop = True
         self.type = randint(0,1) # 작은공 0, 큰공 1
-        self.speed = randint(10,20)
+        self.speed = 0
 
     def draw(self):
         if self.type == 0:
@@ -99,7 +99,17 @@ def reset_world():
     grass = Grass(); world.append(grass)
     team = [Boy() for _ in range(11)]; world += team
     zombie = Zombie(); world.append(zombie)
-    balls = [Ball() for _ in range(20)]; world += balls
+
+    speeds = list(range(10,30))
+    shuffle(speeds)
+    #balls = [Ball() for _ in range(20)]; world += balls
+    balls = []
+    for i in range(20):
+        ball = Ball()
+        ball.speed = speeds[i]
+        balls.append(ball)
+    world += balls
+
 
 
 def update_world():
