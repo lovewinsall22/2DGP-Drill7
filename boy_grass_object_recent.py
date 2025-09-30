@@ -17,7 +17,7 @@ class Grass: # 클래스의 이름은 대문자로
 class Boy:
     def __init__(self):
         self.image = load_image('run_animation.png')
-        self.x = 400
+        self.x = random.randint(0,800)
         self.frame = 0
 
     def draw(self):
@@ -43,20 +43,24 @@ def handle_events():
 def reset_world():
     global running
     global grass
-    global boy
+    #global boy
+    global team
 
     running = True
     grass = Grass() # 클래스를 이용해 객체 생성
-    boy = Boy()
+    #boy = Boy()
+    team = [Boy() for _ in range(11)]
 
 def update_world():
     grass.update()
-    boy.update()
+    for boy in team:
+        boy.update()
 
 def render_world():
     clear_canvas()
     grass.draw() # 객체의 메서드 호출
-    boy.draw()
+    for boy in team:
+        boy.draw()
     update_canvas()
 
 
