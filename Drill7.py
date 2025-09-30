@@ -47,7 +47,7 @@ class Ball:
     def __init__(self):
         self.smallball_image = load_image('ball21x21.png')
         self.bigball_image = load_image('ball41x41.png')
-        self.x = randint(0,800)
+        self.x, self.y = randint(0,800), 599
         self.drop = True
         self.type = randint(0,1)
         self.speed = randint(5,20)
@@ -83,7 +83,7 @@ def reset_world():
     grass = Grass(); world.append(grass)
     team = [Boy() for _ in range(11)]; world += team
     zombie = Zombie(); world.append(zombie)
-    balls = [Ball() for n in range(20)]
+    balls = [Ball() for n in range(20)]; world += balls
 
 
 def update_world():
