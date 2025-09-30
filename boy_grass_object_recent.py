@@ -25,6 +25,11 @@ class Boy:
     def update(self):
         self.frame = (self.frame + 1) % 8
 
+class Zombie:
+    pass
+
+
+
 
 def handle_events():
     global running
@@ -41,25 +46,30 @@ def handle_events():
 
 def reset_world():
     global running
+    global world
     global grass
     #global boy
     global team
 
     running = True
+    world = []
+
     grass = Grass() # 클래스를 이용해 객체 생성
+    world.append(grass)
     #boy = Boy()
     team = [Boy() for _ in range(11)]
+    world += team
 
 def update_world():
-    grass.update()
-    for boy in team:
-        boy.update()
+    for gameObject in world:
+        gameObject.update()
 
 def render_world():
     clear_canvas()
-    grass.draw() # 객체의 메서드 호출
-    for boy in team:
-        boy.draw()
+
+    for gameObject in world:
+        gameObject.draw()
+
     update_canvas()
 
 
