@@ -74,7 +74,7 @@ def reset_world():
     global team
     global zombie
 
-    global bigball, smallball
+    global balls
 
     running = True
     world = []
