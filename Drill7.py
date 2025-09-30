@@ -59,7 +59,8 @@ class Ball:
             self.bigball_image.draw(self.x, self.y)
 
     def update(self):
-        pass
+        if self.drop == True:
+            self.y -= self.speed
 
 
 
