@@ -10,7 +10,21 @@ class Grass: # 클래스의 이름은 대문자로
     def draw(self):
         self.image.draw(400,30)
 
+    def update(self):
+        pass
 
+
+class Boy:
+    def __init__(self):
+        self.image = load_image('run_animation.png')
+        self.x = 400
+        self.frame = 0
+
+    def draw(self):
+        self.image.clip_draw(self.frame * 100,0,100,100,self.x, 90)
+
+    def update(self):
+        self.frame = (self.frame + 1) % 8
 
 
 def handle_events():
@@ -22,15 +36,28 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
+
+
+
+
 def reset_world():
+    global running
+    global grass
+    global boy
+
+    running = True
     grass = Grass() # 클래스를 이용해 객체 생성
+    boy = Boy()
 
 def update_world():
-    pass
+    grass.update()
+    boy.update()
 
 def render_world():
-    pass
-
+    clear_canvas()
+    grass.draw() # 객체의 메서드 호출
+    boy.draw()
+    update_canvas()
 
 
 
