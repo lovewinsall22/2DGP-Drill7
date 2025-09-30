@@ -24,6 +24,7 @@ class Boy:
 
     def update(self):
         self.frame = (self.frame + 1) % 8
+        self.x += 5
 
 class Zombie:
     def __init__(self):
@@ -42,6 +43,14 @@ class Zombie:
                              self.x, self.y, frame_width // 2, frame_height // 2)
 
 
+class Ball:
+    def __init__(self):
+        self.smallball_image = load_image('ball21x21.png')
+        self.bigball_image = load_image('ball41x41.png')
+        self.x = randint(0,800)
+        self.drop = True
+        self.type = randint(0,1)
+        self.speed = randint(5,20)
 
 
 def handle_events():
@@ -65,16 +74,16 @@ def reset_world():
     global team
     global zombie
 
+    global bigball, smallball
+
     running = True
     world = []
 
-    grass = Grass() # 클래스를 이용해 객체 생성
-    world.append(grass)
-    #boy = Boy()
-    team = [Boy() for _ in range(11)]
-    world += team
-    zombie = Zombie()
-    world.append(zombie)
+    # 클래스를 이용해 객체 생성
+    grass = Grass(); world.append(grass)
+    team = [Boy() for _ in range(11)]; world += team
+    zombie = Zombie(); world.append(zombie)
+    balls = [Ball() for n in range(20)]
 
 
 def update_world():
