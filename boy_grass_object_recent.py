@@ -26,7 +26,20 @@ class Boy:
         self.frame = (self.frame + 1) % 8
 
 class Zombie:
-    pass
+    def __init__(self):
+        self.x, self.y = 100, 170
+        self.frame = 0
+        self.image = load_image('zombie_run_animation.png')
+
+    def update(self):
+        self.frame = (self.frame + 1) % 10
+        self.x += 5
+
+    def draw(self):
+        frame_width = self.image.w // 10
+        frame_height = self.image.h
+        self.image.clip_draw(self.frame * frame_width,0,frame_width,frame_height,
+                             self.x, self.y, frame_width // 2, frame_height // 2)
 
 
 
@@ -50,6 +63,7 @@ def reset_world():
     global grass
     #global boy
     global team
+    global zombie
 
     running = True
     world = []
@@ -59,6 +73,9 @@ def reset_world():
     #boy = Boy()
     team = [Boy() for _ in range(11)]
     world += team
+    zombie = Zombie()
+    world.append(zombie)
+
 
 def update_world():
     for gameObject in world:
