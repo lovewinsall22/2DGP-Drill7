@@ -3,6 +3,14 @@ import random
 
 
 # Game object class here
+class Grass: # 클래스의 이름은 대문자로
+    def __init__(self): #생성자함수
+        self.image = load_image('grass.png')
+
+    def draw(self):
+        self.image.draw(400,30)
+
+
 
 
 def handle_events():
@@ -13,6 +21,15 @@ def handle_events():
             running = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
+
+def reset_world():
+    grass = Grass() # 클래스를 이용해 객체 생성
+
+def update_world():
+    pass
+
+def render_world():
+    pass
 
 
 
