@@ -49,7 +49,7 @@ class Ball:
         self.bigball_image = load_image('ball41x41.png')
         self.x, self.y = randint(0,800), 599
         self.drop = True
-        self.type = randint(0,1)
+        self.type = randint(0,1) # 작은공 0, 큰공 1
         self.speed = randint(10,20)
 
     def draw(self):
