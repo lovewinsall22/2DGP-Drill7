@@ -52,6 +52,16 @@ class Ball:
         self.type = randint(0,1)
         self.speed = randint(5,20)
 
+    def draw(self):
+        if self.type == 0:
+            self.smallball_image.draw(self.x, self.y)
+        else:
+            self.bigball_image.draw(self.x, self.y)
+
+    def update(self):
+        pass
+
+
 
 def handle_events():
     global running
@@ -83,7 +93,7 @@ def reset_world():
     grass = Grass(); world.append(grass)
     team = [Boy() for _ in range(11)]; world += team
     zombie = Zombie(); world.append(zombie)
-    balls = [Ball() for n in range(20)]; world += balls
+    balls = [Ball() for _ in range(20)]; world += balls
 
 
 def update_world():
